@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-color: #8bc0b7;
+}
+
+Body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  background: rgb(240, 242, 248);
+}
+body * {
+  font-family: 'Mukta', sans-serif;
+}
+
+.app {
+  width: 340px;
+  box-shadow: 0.1px 0.1px 2px 2px var(--bg-color) ;
+  border-radius: 4.5px;
+  background-color: var(--bg-color);
+  overflow: hidden;
+  text-overflow: ellipsis clip;
+  
+}
+.monitor {
+  display: flex;
+  flex-direction: column;
+  height: 130px;
+  width: 340px;
+  border-radius: 4px 4px 0 0;
+  align-items: end;
+  justify-content: space-between;
+  padding: 10px;
+  padding-top: 20px;
+  direction: rtl;
+  text-overflow: ellipsis;
+  
+
+}
+#number {
+  
+  width: 100%;
+  font-size: 35px;
+  font-weight: bolder;
+  
+}
+
+#result {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  direction: ltr;
+  text-align: right;
+ 
+}
+
+#c {
+  grid-area: c;
+}
+
+#ac {
+  grid-area: ac;
+}
+
+#bs {
+  grid-area: bs;
+  background-image: url(icon/backspace.png);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: center;
+  color: transparent;
+}
+
+#division {
+  grid-area: division;
+}
+
+#seven{
+  grid-area: seven;
+}
+
+#eight {
+  grid-area: eight;
+}
+
+#nine {
+  grid-area: nine;
+}
+
+#mult {
+  grid-area: mult;
+}
+
+#four {
+  grid-area: four;
+}
+
+#five {
+  grid-area: five;
+}
+
+#six {
+  grid-area: six;
+}
+
+#less {
+  grid-area: less;
+}
+
+#one {
+  grid-area: one;
+}
+
+#two {
+  grid-area: two;
+}
+
+#three {
+  grid-area: three;
+}
+
+#more {
+  grid-area: more;
+}
+
+#dzero {
+  grid-area: dzero;
+}
+
+#zero{
+  grid-area: zero;
+}
+
+#comma {
+  grid-area: comma;
+}
+
+#same {
+  grid-area: same;
+}
+
+
+.operators {
+  height: 300px;
+  width: 340px;
+  border-radius: 0 0 4px 4px;
+  padding: 3px;
+
+  display: grid;
+  grid-template-areas:'c ac bs division'
+  'seven eight nine mult'
+  'four five six less'
+  'one two three more' 
+  'dzero zero comma same';
+  gap: 1px;
+  place-items: center;
+  
+}
+
+button {
+  font-size: 20px;
+  width: 80px;
+  height: 55px;
+  margin: 0;
+  border: 0;
+  box-shadow: 0px 0px 2px 0.1px rgba(31, 191, 212, 0.404);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+button:active {
+  background: rgb(213, 226, 230);
+  box-shadow: 0px 0px 5px 1px rgba(1, 217, 245, 0.795);
+}
+
