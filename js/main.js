@@ -113,7 +113,7 @@ addEventListener('click', function(event) {
   }
 })
 
-addEventListener('keydown', function(e) {
+window.addEventListener('keydown', function(e) {
   if(buttonNumber.innerText.length <= 15 & buttonResult.innerText.length <= 20){
     number(e.key)
   } else {
