@@ -104,7 +104,7 @@ function calculation(n1, operator, n2) {
 
 
 addEventListener('click', function(event) {
-  if(buttonNumber.innerText.length <= 15 & buttonResult.innerText.length <= 20){
+  if(buttonNumber.innerText.length <= 15 & buttonResult.innerText.length <= 30){
     number(event.target.innerText)
   } else {
     alert("Número não suportado.")
@@ -114,7 +114,8 @@ addEventListener('click', function(event) {
 })
 
 addEventListener('keydown', function(e) {
-  if(buttonNumber.innerText.length <= 15 & buttonResult.innerText.length <= 20){
+  e.preventDefault()
+  if(buttonNumber.innerText.length <= 15 & buttonResult.innerText.length <= 30){
     number(e.key)
   } else {
     alert("Número não suportado.")
