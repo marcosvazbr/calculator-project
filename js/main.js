@@ -1,5 +1,7 @@
-let buttonNumber = document.querySelector('#number')
-let buttonResult = document.querySelector('#result')
+import { DisplayNumber } from "./calculations.js";
+
+  
+
 
 let number1 = ''
 let number2 = ''
@@ -79,7 +81,7 @@ function number(number) {
 }
 
 
-function calculation(n1, operator, n2) {
+function calculatio(n1, operator, n2) {
 
   n1 = n1.replace(',', '.')
   n2 = n2.replace(',', '.')
@@ -104,23 +106,9 @@ function calculation(n1, operator, n2) {
 
 
 addEventListener('click', function(event) {
-  if(buttonNumber.innerText.length <= 15 & buttonResult.innerText.length <= 30){
-    number(event.target.innerText)
-  } else {
-    alert("Número não suportado.")
-    buttonNumber.innerText = ''
-    buttonResult.innerText = ''
-  }
+  new DisplayNumber(event.target.innerText)
 })
 
 addEventListener('keydown', function(e) {
-  e.preventDefault()
-  if(buttonNumber.innerText.length <= 15 & buttonResult.innerText.length <= 30){
-    number(e.key)
-  } else {
-    alert("Número não suportado.")
-    buttonNumber.innerText = ''
-    buttonResult.innerText = ''
-  }
-
+  new DisplayNumber(e.key)
 })
