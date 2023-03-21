@@ -1,52 +1,56 @@
-export class DisplayNumber {
-  constructor(click, number1) {
-    this.click = click
-    this.buttonNumber = document.querySelector('#number').innerText
-    this.buttonResult = document.querySelector('#result').innerText
-    this.firtNumber()
-    this.number1 = number1
-  }
-  function firtNumber(click){
-    if(this.buttonNumber == "0" && this.buttonNumber.length == 1 && this.click == ","){
-      document.querySelector('#number').innerText = this.buttonNumber + this.click
-    } else if(this.buttonNumber == "0" && this.buttonNumber.length == 1) {
-      this.buttonNumber = ""
-      this.number(this.click)
+
+  let buttonNumber 
+  let buttonResult 
+  let operator = ""
+  let number1 
+  let number2
+  let noRepeatOperator
+
+  export function firtNumber(click){
+    console.log(buttonNumber)
+    buttonNumber = document.querySelector('#number').innerText
+    buttonResult = document.querySelector('#result').innerText
+    if(buttonNumber == "0" && buttonNumber.length == 1 && click == ","){
+      document.querySelector('#number').innerText = buttonNumber + click
+    } else if(buttonNumber == "0" && buttonNumber.length == 1) {
+      buttonNumber = "" 
+      number(click)
     } else {
-      this.number(this.click)
+      number(click)
     }
   }
-
-  updateNumber(click){
-    document.querySelector('#number').innerText = this.buttonNumber + click
+  
+  function updateNumber(click){
+    document.querySelector('#number').innerText = buttonNumber + click
     
   }
 
-  updateResult(click){
-    this.buttonResult == "" ? document.querySelector('#result').innerText = `${this.buttonNumber} ${click}` : document.querySelector('#result').innerText = `${this.buttonResult} ${click}`
+  function updateResult(click){
+    buttonResult == "" ? document.querySelector('#result').innerText = `${buttonNumber} ${click}` : document.querySelector('#result').innerText = `${buttonResult} ${click}`
     document.querySelector('#number').innerText = ""
     
   }
 
-  deleteLastNumber(){
-    document.querySelector('#number').innerText =  this.buttonNumber.slice(0, -1)
-    console.log(this.buttonNumber)
-  }
-
-  deleteNumber() {
-    document.querySelector('#number').innerText = ""
-  }
-
-  deleteAll() {
+  function deleteAll() {
     document.querySelector('#result').innerText = ""
-    document.querySelector('#number').innerText = ""
+    document.querySelector('#number').innerText = "0"
+    number1 = ""
+    number2 = ""
+    operator = ""
+    noRepeatOperator = false
   }
 
-  result() {
-    document.querySelector('#number').innerText = parseFloat(n1) + parseFloat(n2)
+  function result() {
+    document.querySelector('#number').innerText = buttonNumber.replace('.', ',')
+    document.querySelector('#result').innerText = `${buttonResult}     ${number2.replace('.', ',')}`
+    number1 = buttonNumber
+    number2 = 0
+    operator = ""
   }
 
-  number(click) {
+  function number(click) {
+    console.log('chegou aqui')
+    console.log(document.querySelector('#number').innerText)
     switch (click) {
       case '00':
       case '0':
@@ -59,90 +63,97 @@ export class DisplayNumber {
       case '7':
       case '8':
       case '9':
-        console.log(this.number1)
-        this.updateNumber(click) 
-        console.log(this.number1)
+        
+        updateNumber(click) 
+        noRepeatOperator = true
         break
       case ',':
-        this.buttonNumber.includes(',') ? console.log("teste") : this.updateNumber(this.click)
+        buttonNumber.includes(',') ? console.log("teste") : updateNumber(click)
 
         break
       case '+':
-        this.operator = '+'
-        console.log(this.operator)
-        console.log(this.number1)
-        
-        this.updateResult('+')
+        if (noRepeatOperator & operator == ""){
+          noRepeatOperator = false
+          operator = '+'
+          number1 = document.querySelector('#number').innerText
+          updateResult('+') 
+        }
         break
       case '-':
-        this.number1 = this.buttonNumber
-        this.operator = '-'
-        this.updateResult(this.operator)
-        
+        if (noRepeatOperator & operator == ""){
+          noRepeatOperator = false
+          operator = '-'
+          number1 = document.querySelector('#number').innerText
+          updateResult('-') 
+        }
         break
       case '*':
       case 'x':
-        this.number1 = this.buttonNumber
-        this.operator = 'x'
-        this.updateResult(this.operator)
+        if (noRepeatOperator & operator == ""){
+          noRepeatOperator = false
+          operator = 'x'
+          number1 = document.querySelector('#number').innerText
+          updateResult('x') 
+        }
         break
       case '/':
       case '÷':
-        this.number1 = this.buttonNumber
-        this.operator = '÷'
-        this.updateResult(this.operator)
-        break
-      case 'Backspace':
-      case '!':
-        this.deleteLastNumber()
-        break
-      case 'AC':
-        this.deleteNumber()
+        if (noRepeatOperator & operator == ""){
+          noRepeatOperator = false
+          operator = '÷'
+          number1 = document.querySelector('#number').innerText
+          updateResult('÷') 
+        }
         break
       case 'Escape':
-      case 'C':
-        this.deleteAll()
+      case 'Delete':
+        deleteAll()
         break
       case 'Enter':
       case '=':
-        this.number2 = this.buttonNumber
-        if(this.number1 != '' & this.operator != '' & this.number2 != ''){  
-          this.calculatio()
-          this.updateResult(this.buttonNumber)
+        number2 = buttonNumber
+        if(number1 != '' & operator != '' & number2 != ''){  
+          calculatio() 
         } 
-        
-
-      
         break
   
     }
   }
 
+  function calculatio() {
+    number1 = number1.replace(',', '.')
+    number2 = number2.replace(',', '.')
 
-  calculatio() {
-    console.log(this.operator)
-    this.number1 = this.number1.replace(',', '.')
-    this.number2 = this.number2.replace(',', '.')
-    console.log(this.operator)
-
-    switch (this.operator) {
+    switch (operator) {
   
       case '+':
-        console.log('chegou aqui')
-        result(this.number1, this.number2)
-        document.querySelector('#number').innerText = parseFloat(this.number1) + parseFloat(this.number2)
+        buttonNumber = parseFloat(number1) + parseFloat(number2)
+        buttonNumber = parseFloat(buttonNumber.toFixed(4))
+        buttonNumber = buttonNumber.toString()
+        console.log(buttonNumber)
+        result()
         break
       case '-':
-        this.buttonNumber.innerText = parseFloat(n1) - parseFloat(n2)
+        buttonNumber = parseFloat(number1) - parseFloat(number2)
+        buttonNumber = parseFloat(buttonNumber.toFixed(4))
+        buttonNumber = buttonNumber.toString()
+        console.log(buttonNumber)
+        result()
         break
       case 'x':
-        this.buttonNumber.innerText = parseFloat(n1) * parseFloat(n2)
+        buttonNumber = parseFloat(number1) * parseFloat(number2)
+        buttonNumber = parseFloat(buttonNumber.toFixed(4))
+        buttonNumber = buttonNumber.toString()
+        result()
         break
       case '÷':
-        this.buttonNumber.innerText = parseFloat(n1) / parseFloat(n2)
+        buttonNumber = parseFloat(number1) / parseFloat(number2)
+        buttonNumber = parseFloat(buttonNumber.toFixed(4))
+        buttonNumber = buttonNumber.toString()
+        console.log(buttonNumber)
+        result()
         break
     }
-    this.buttonNumber = this.buttonNumber.replace('.', ',')
+    
     
   }
-}
