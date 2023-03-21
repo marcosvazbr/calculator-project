@@ -4,8 +4,8 @@ import { DisplayNumber } from "./calculations.js";
 
 
 let number1 = ''
-let number2 = ''
-let operator = ''
+let number2 
+let operator 
 
 function number(number) {
 
@@ -81,32 +81,8 @@ function number(number) {
 }
 
 
-function calculatio(n1, operator, n2) {
-
-  n1 = n1.replace(',', '.')
-  n2 = n2.replace(',', '.')
-  switch (operator) {
-
-    case '+':
-      buttonNumber.innerText = parseFloat(n1) + parseFloat(n2)
-      break
-    case '-':
-      buttonNumber.innerText = parseFloat(n1) - parseFloat(n2)
-      break
-    case 'x':
-      buttonNumber.innerText = parseFloat(n1) * parseFloat(n2)
-      break
-    case '÷':
-      buttonNumber.innerText = parseFloat(n1) / parseFloat(n2)
-      break
-  }
-  buttonNumber.innerText = buttonNumber.innerText.replace('.', ',')
-  
-}
-
-
 addEventListener('click', function(event) {
-  new DisplayNumber(event.target.innerText)
+  new DisplayNumber(event.target.innerText, number1)
 })
 
 addEventListener('keydown', function(e) {
