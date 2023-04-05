@@ -7,7 +7,6 @@
   let noRepeatOperator
 
   export function firtNumber(click){
-    console.log(buttonNumber)
     buttonNumber = document.querySelector('#number').innerText
     buttonResult = document.querySelector('#result').innerText
     if(buttonNumber == "0" && buttonNumber.length == 1 && click == ","){
@@ -49,8 +48,6 @@
   }
 
   function number(click) {
-    console.log('chegou aqui')
-    console.log(document.querySelector('#number').innerText)
     switch (click) {
       case '00':
       case '0':
@@ -130,7 +127,6 @@
         buttonNumber = parseFloat(number1) + parseFloat(number2)
         buttonNumber = parseFloat(buttonNumber.toFixed(4))
         buttonNumber = buttonNumber.toString()
-        console.log(buttonNumber)
         result()
         break
       case '-':
